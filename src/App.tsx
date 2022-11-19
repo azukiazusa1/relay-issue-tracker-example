@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { RelayEnvironmentProvider } from "react-relay/hooks";
+import { RouterProvider } from "react-router";
+import { RecoilRoot } from "recoil";
+import RelayEnvironment from "./RelayEnvironment";
+import { router } from "./routing/routes";
 
-function App() {
+function AppRoot() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <RelayEnvironmentProvider environment={RelayEnvironment}>
+        <RouterProvider router={router} />
+      </RelayEnvironmentProvider>
+    </RecoilRoot>
   );
 }
 
-export default App;
+export default AppRoot;
